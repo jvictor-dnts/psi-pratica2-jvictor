@@ -1,0 +1,13 @@
+from sqlalchemy import create_engine
+from sqlalchemy.orm import DeclarativeBase, Session
+
+class Base(DeclarativeBase):
+    pass
+
+engine = create_engine("sqlite:///biblioteca.db")
+
+def criar_banco():
+    Base.metadata.create_all(bind=engine)
+
+def nova_sessao():
+    return Session(engine)
